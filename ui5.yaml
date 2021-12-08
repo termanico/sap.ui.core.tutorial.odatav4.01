@@ -1,0 +1,34 @@
+specVersion: "2.3"
+metadata:
+  name: "sap.ui.core.tutorial.odatav4.01"
+type: application
+resources:
+  configuration:
+    paths:
+      webapp: ./webapp
+# server:
+#   customMiddleware:
+#     - name: fiori-tools-proxy
+#       afterMiddleware: compression
+#       configuration:
+#         ignoreCertError: true
+#         backend:
+#           - path: /sap
+#             url: https://svi.sap.swm.de:44320
+#             client: "100"
+#         ui5:
+#           path:
+#             - /resources
+#             - /test-resources
+#           url: https://ui5.sap.com
+#           version: "1.97.0"
+#     - name: fiori-tools-appreload
+#       afterMiddleware: compression
+#       configuration:
+#         port: 35729
+#         path: webapp
+#         delay: 300
+#     - name: fiori-tools-preview
+#       afterMiddleware: fiori-tools-appreload
+#       configuration:
+#         component: ztravelrapdv4
