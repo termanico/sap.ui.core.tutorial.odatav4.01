@@ -4,7 +4,7 @@
   "author": "SAP SE",
   "description": "Sample: OData V4 - Step 1 - Set Up the Initial App",
   "scripts": {
-    "start": "ui5 serve",
+    "start": "ui5 serve --open ./index.html",
     "build": "ui5 build"
   },
   "dependencies": {
