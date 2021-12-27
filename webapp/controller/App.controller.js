@@ -53,6 +53,16 @@ sap.ui.define([
 				}
 			});
 		},
+		onInputChange: function (oEvt) {
+			if (oEvt.getParameter("escPressed")) {
+				this._setUIChanges();
+			} else {
+				this._setUIChanges(true);
+				if (oEvt.getSource().getParent().getBindingContext().getProperty("UserName")) {
+					this.getView().getModel("appView").setProperty("/usernameEmpty", false);
+				}
+			}
+		},
 		onRefresh: function () {
 			var oBinding = this.byId("peopleList").getBinding("items");
 
@@ -62,6 +72,11 @@ sap.ui.define([
 			}
 			oBinding.refresh();
 			MessageToast.show(this._getText("refreshSuccessMessage"));
+		},
+		onResetChanges: function () {
+			this.byId("peopleList").getBinding("items").resetChanges();
+			this._bTechnicalErrors = false;
+			this._setUIChanges();
 		},
 		onSave: function () {
 			var fnSuccess = function () {
