@@ -53,6 +53,17 @@ sap.ui.define([
 				}
 			});
 		},
+		onDelete: function () {
+			var oSelected = this.byId("peopleList").getSelectedItem();
+
+			if (oSelected) {
+				oSelected.getBindingContext().delete("$auto").then(function () {
+					MessageToast.show(this._getText("deletionSuccessMessage"));
+				}.bind(this), function (oError) {
+					MessageBox.error(oError.message);
+				});
+			}
+		},
 		onInputChange: function (oEvt) {
 			if (oEvt.getParameter("escPressed")) {
 				this._setUIChanges();
@@ -77,6 +88,18 @@ sap.ui.define([
 			this.byId("peopleList").getBinding("items").resetChanges();
 			this._bTechnicalErrors = false;
 			this._setUIChanges();
+		},
+		onResetDataSource: function () {
+			var oModel = this.getView().getModel(),
+				oOperation = oModel.bindContext("/ResetDataSource(...)");
+
+			oOperation.execute().then(function () {
+				oModel.refresh();
+				MessageToast.show(this._getText("sourceResetSuccessMessage"));
+			}.bind(this), function (oError) {
+				MessageBox.error(oError.message);
+			}
+			);
 		},
 		onSave: function () {
 			var fnSuccess = function () {
@@ -143,6 +166,35 @@ sap.ui.define([
 			});
 
 			bMessageOpen = true;
+		},
+		onSelectionChange: function (oEvent) {
+			var oDetailArea = this.byId("detailArea"),
+				oLayout = this.byId("defaultLayout"),
+				// get binding of selected item
+				oUserContext = oEvent.getParameters().listItem.getBindingContext(),
+				oOldContext = oDetailArea.getBindingContext(),
+				oSearchField = this.byId("searchField");
+
+			// remove keepAlive from old context
+			if (oOldContext) {
+				oOldContext.setKeepAlive(false);
+			}
+
+			// set binding
+			oDetailArea.setBindingContext(oUserContext);
+			// set keepAlive for new context
+			oUserContext.setKeepAlive(true, function () {
+				// hides detail area when context is destroyed
+				oLayout.setSize("100%");
+				oLayout.setResizable(false);
+				oDetailArea.setVisible(false);
+				oSearchField.setWidth("20%");
+			});
+			// resize view
+			oDetailArea.setVisible(true);
+			oLayout.setSize("60%");
+			oLayout.setResizable(true);
+			oSearchField.setWidth("40%");
 		},
 		_getText: function (sTextId, aArgs) {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle().getText(sTextId, aArgs);
