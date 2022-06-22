@@ -17,7 +17,7 @@
 		"description": "{{appDescription}}",
 		"dataSources": {
 			"default": {
-				"uri": "https://services.odata.org/TripPinRESTierService/(S(id))/",
+				"uri": "/TripPinRESTierService/(S(id))/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"
@@ -66,11 +66,13 @@
 			},
 			"": {
 				"dataSource": "default",
+				"preload": true,
 				"settings": {
-					"autoExpandSelect": true,
+					"synchronizationMode": "None",
 					"operationMode": "Server",
-					"groupId": "$auto",
-					"synchronizationMode": "None"
+					"autoExpandSelect": true,
+					"earlyRequests": true,
+					"groupId": "$auto"
 				}
 			}
 		}

@@ -11,6 +11,14 @@
     "@openui5/themelib_sap_fiori_3": "^1"
   },
   "devDependencies": {
-    "@ui5/cli": "^2.0.0"
+    "@ui5/cli": "^2.0.0",
+    "@sap/ux-ui5-tooling": "1",
+    "@sap/ui5-builder-webide-extension": "^1.1.7"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling",
+      "@sap/ui5-builder-webide-extension"
+    ]
   }
 }

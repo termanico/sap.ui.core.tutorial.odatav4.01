@@ -1,42 +1,33 @@
-<mvc:View
-	controllerName="sap.ui.core.tutorial.odatav4.controller.App"
+<mvc:View controllerName="sap.ui.core.tutorial.odatav4.controller.App"
 	displayBlock="true"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
 	xmlns:semantic="sap.f.semantic"
 	xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core"
->
+	xmlns:core="sap.ui.core">
 	<Shell>
-		<App
-			busy="{appView>/busy}"
-			class="sapUiSizeCompact"
-		>
+		<App busy="{appView>/busy}"
+			class="sapUiSizeCompact">
 			<pages>
 				<Page title="{i18n>peoplePageTitle}">
 					<headerContent>
-						<Button
-							id="resetChangesButton"
+						<Button id="resetChangesButton"
 							text="{i18n>resetChangesButtonText}"
 							enabled="{= !${appView>/hasUIChanges}}"
 							press="onResetDataSource"
-							type="Emphasized"
-						/>
+							type="Emphasized" />
 					</headerContent>
 					<content>
 						<l:ResponsiveSplitter defaultPane="defaultPane">
 							<l:PaneContainer orientation="Horizontal">
 								<l:SplitPane id="defaultPane">
 									<l:layoutData>
-										<l:SplitterLayoutData
-											id="defaultLayout"
+										<l:SplitterLayoutData id="defaultLayout"
 											size="100%"
-											resizable="false"
-										/>
+											resizable="false" />
 									</l:layoutData>
-									<Table
-										id="peopleList"
+									<Table id="peopleList"
 										growing="true"
 										growingThreshold="10"
 										items="{
@@ -47,52 +38,41 @@
 											}
 										}"
 										mode="SingleSelectLeft"
-										selectionChange=".onSelectionChange"
-									>
+										selectionChange=".onSelectionChange">
 										<headerToolbar>
 											<OverflowToolbar>
 												<content>
 													<ToolbarSpacer/>
-													<SearchField
-														id="searchField"
+													<SearchField id="searchField"
 														width="20%"
 														placeholder="{i18n>searchFieldPlaceholder}"
 														enabled="{= !${appView>/hasUIChanges}}"
-														search=".onSearch"
-													/>
-													<Button
-														id="addUserButton"
+														search=".onSearch" />
+													<Button id="addUserButton"
 														icon="sap-icon://add"
 														tooltip="{i18n>createButtonText}"
-														press=".onCreate"
-													>
+														press=".onCreate">
 														<layoutData>
 															<OverflowToolbarLayoutData priority="NeverOverflow"/>
 														</layoutData>
 													</Button>
-													<Button
-														id="deleteUserButton"
+													<Button id="deleteUserButton"
 														icon="sap-icon://delete"
 														tooltip="{i18n>deleteButtonText}"
-														press=".onDelete"
-													>
+														press=".onDelete">
 														<layoutData>
 															<OverflowToolbarLayoutData priority="NeverOverflow"/>
 														</layoutData>
 													</Button>
-													<Button
-														id="refreshUsersButton"
+													<Button id="refreshUsersButton"
 														icon="sap-icon://refresh"
 														tooltip="{i18n>refreshButtonText}"
-														press=".onRefresh"
-													/>
-													<Button
-														id="sortUsersButton"
+														press=".onRefresh" />
+													<Button id="sortUsersButton"
 														icon="sap-icon://sort"
 														enabled="{= !${appView>/hasUIChanges}}"
 														tooltip="{i18n>sortButtonText}"
-														press=".onSort"
-													/>
+														press=".onSort" />
 												</content>
 											</OverflowToolbar>
 										</headerToolbar>
@@ -113,30 +93,22 @@
 										<items>
 											<ColumnListItem>
 												<cells>
-													<Input
-														value="{UserName}"
+													<Input value="{UserName}"
 														valueLiveUpdate="true"
-														liveChange=".onInputChange"
-													/>
+														liveChange=".onInputChange" />
 												</cells>
 												<cells>
-													<Input
-														value="{FirstName}"
-														liveChange=".onInputChange"
-													/>
+													<Input value="{FirstName}"
+														liveChange=".onInputChange" />
 												</cells>
 												<cells>
-													<Input
-														value="{LastName}"
-														liveChange=".onInputChange"
-													/>
+													<Input value="{LastName}"
+														liveChange=".onInputChange" />
 												</cells>
 												<cells>
-													<Input
-														value="{Age}"
+													<Input value="{Age}"
 														valueLiveUpdate="true"
-														liveChange=".onInputChange"
-													/>
+														liveChange=".onInputChange" />
 												</cells>
 											</ColumnListItem>
 										</items>
@@ -145,15 +117,11 @@
 								<l:SplitPane>
 									<!--Details-->
 									<!--remove busy-->
-									<semantic:SemanticPage
-										id="detailArea"
-										visible="false"
-									>
+									<semantic:SemanticPage id="detailArea"
+										visible="false">
 										<semantic:titleHeading>
-											<Title
-												text="{FirstName} {LastName}"
-												level="H2"
-											/>
+											<Title text="{FirstName} {LastName}"
+												level="H2" />
 										</semantic:titleHeading>
 										<semantic:headerContent>
 											<FlexBox>
@@ -163,10 +131,8 @@
 												</VBox>
 												<VBox class="sapUiMediumMarginBegin">
 													<ObjectAttribute text="{i18n>ageLabelText}"/>
-													<ObjectNumber
-														number="{Age}"
-														numberUnit="Years"
-													/>
+													<ObjectNumber number="{Age}"
+														numberUnit="Years" />
 												</VBox>
 											</FlexBox>
 										</semantic:headerContent>
@@ -178,8 +144,7 @@
 															<core:Title text="{i18n>addressTitleText}"/>
 														</f:title>
 														<f:layout>
-															<f:ResponsiveGridLayout
-																labelSpanXL="3"
+															<f:ResponsiveGridLayout labelSpanXL="3"
 																labelSpanL="3"
 																labelSpanM="3"
 																labelSpanS="12"
@@ -191,8 +156,7 @@
 																columnsXL="1"
 																columnsL="1"
 																columnsM="1"
-																singleContainerFullSize="false"
-															/>
+																singleContainerFullSize="false" />
 														</f:layout>
 														<f:formContainers>
 															<f:FormContainer>
@@ -226,8 +190,7 @@
 															<core:Title text="{i18n>bestFriendTitleText}"/>
 														</f:title>
 														<f:layout>
-															<f:ResponsiveGridLayout
-																labelSpanXL="3"
+															<f:ResponsiveGridLayout labelSpanXL="3"
 																labelSpanL="3"
 																labelSpanM="3"
 																labelSpanS="12"
@@ -239,8 +202,7 @@
 																columnsXL="1"
 																columnsL="1"
 																columnsM="1"
-																singleContainerFullSize="false"
-															/>
+																singleContainerFullSize="false" />
 														</f:layout>
 														<f:formContainers>
 															<f:FormContainer>
@@ -265,8 +227,7 @@
 														</f:formContainers>
 													</f:Form>
 												</FlexBox>
-												<Table
-													id="friendsTable"
+												<Table id="friendsTable"
 													width="auto"
 													items="{
 														path: 'Friends',
@@ -275,15 +236,12 @@
 														}
 													}"
 													noDataText="No Data"
-													class="sapUiSmallMarginBottom"
-												>
+													class="sapUiSmallMarginBottom">
 													<headerToolbar>
 														<Toolbar>
-															<Title
-																text="Friends"
+															<Title text="Friends"
 																titleStyle="H3"
-																level="H3"
-															/>
+																level="H3" />
 														</Toolbar>
 													</headerToolbar>
 													<columns>
@@ -327,18 +285,14 @@
 					<footer>
 						<Toolbar visible="{appView>/hasUIChanges}">
 							<ToolbarSpacer/>
-							<Button
-								id="saveButton"
+							<Button id="saveButton"
 								type="Emphasized"
 								text="{i18n>saveButtonText}"
 								enabled="{= ${message>/}.length === 0 &amp;&amp; ${appView>/usernameEmpty} === false }"
-								press=".onSave"
-							/>
-							<Button
-								id="doneButton"
+								press=".onSave" />
+							<Button id="doneButton"
 								text="{i18n>cancelButtonText}"
-								press=".onResetChanges"
-							/>
+								press=".onResetChanges" />
 						</Toolbar>
 					</footer>
 				</Page>

@@ -6,28 +6,37 @@ resources:
   configuration:
     paths:
       webapp: ./webapp
-# server:
-#   customMiddleware:
-#     - name: fiori-tools-proxy
-#       afterMiddleware: compression
-#       configuration:
-#         ignoreCertError: true
-#         backend:
-#           - path: /sap
-#             url: https://svi.sap.swm.de:44320
-#             client: "100"
-#         ui5:
-#           path:
-#             - /resources
-#             - /test-resources
-#           url: https://ui5.sap.com
-#           version: "1.97.0"
-#     - name: fiori-tools-appreload
-#       afterMiddleware: compression
-#       configuration:
-#         port: 35729
-#         path: webapp
-#         delay: 300
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: true
+        backend:
+          - path: /TripPinRESTierService
+            url: https://services.odata.org/
+            client: "100"
+        # ui5:
+        #   path:
+        #     - /resources
+        #     - /test-resources
+        #   url: https://ui5.sap.com
+        #   version: "1.103.0"
+    - name: fiori-tools-servestatic
+      afterMiddleware: compression
+      configuration:
+        paths:
+          # local UI5 framework (replaced by framework option - see above)
+          - path: /resources
+            src: "C:/Users/klingbeil.thorsten/code/ui5/sapui5_sdk_1_102_0/resources"
+          - path: /test-resources
+            src: "C:/Users/klingbeil.thorsten/code/ui5/sapui5_sdk_1_102_0/test-resources"
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
 #     - name: fiori-tools-preview
 #       afterMiddleware: fiori-tools-appreload
 #       configuration:
